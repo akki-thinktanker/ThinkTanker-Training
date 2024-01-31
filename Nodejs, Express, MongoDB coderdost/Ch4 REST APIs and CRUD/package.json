@@ -1,0 +1,16 @@
+{
+  "name": "ch-3-express-js",
+  "version": "1.0.0",
+  "description": "express js session",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "akash nai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  }
+}

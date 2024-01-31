@@ -1,0 +1,296 @@
+1) What is node.js? Where can you use it?
+- Node.js is a JavaScript runtime environment.
+- which is used to build scalable programs.
+- Node.js is a powerful framework developed on Chrome’s V8 JavaScript engine.
+- Using Node.js, one can build everything, a simple command line programs to the complex  level web applications.
+- It is used to create server-side web applications.
+
+2) List down the major benefits of using Node.js?
+- Fast = Node.js is built on Google Chrome’s V8 JavaScript Engine which makes its library very fast in code execution.
+- It rarely blocks.
+- Asynchronous = Node.js based server never waits for an API to return data thus making it asynchronous.
+- Scalable = It is highly scalable because of its event mechanism which helps the server to respond in a non-blocking way.
+- Everything is asynchronous.
+- Open Source = Node.js has an extensive open source community which has contributed in producing some excellent modules to add additional capabilities to Node.js applications.
+
+3)Why Node.js is single threaded?
+- node.js is based on single threaded architecture due to the reason that it runs on google chrome v8 engine which is a single threaded architecture.
+- for the better performance.
+- Node.js uses a single threaded model in order to support async processing.
+- With async processing, an application can perform better and is more scalable under web loads.
+
+4)How many types of API functions are there in Node.js?
+- Asynchronous, non-blocking functions = do not wait for the server to respond. -not block and processing in the background.
+- Synchronous, blocking functions =  In case, any answer couldn’t be retrieved then the API returns immediately with an error. - that wait for the response to come back.
+
+5)What is ‘Callback’ in node.js?
+- Callback function is used in node.js to deal with multiple requests made to the server.
+- if you have a large file which is going to take a long time for a server to read and if you don’t want a server to get engage in reading that large file while dealing with other requests,
+- call back function is used. Call back function allows the server to deal with pending request first and call a function when it is finished.
+- Keep your code DRY (Do Not Repeat Yourself).
+- when any function depends on the another function result that time we can use the callback function.
+- but in that code is not more readable and managable that's whay promises are best for the used.
+
+6) Event loop in javascript?
+- Event loops handle asynchronous callbacks in Node.js.
+- It is the foundation of the non-blocking input/output in Node.js.
+- event loop handles the execution of multiple chunks of your program over time, each time invoking the JS Engine.
+
+7) difference between mysql and mongodb  =  https://www.geeksforgeeks.org/mongodb-vs-mysql/
+-  MongoDB stores data in JSON-like documents
+-  sql  stores data in rows
+-  mongobd support rich data model
+- sql not support rich data model
+- mongobd support dynamic schema
+- sql not support dynamic schema
+- mongodb is easy for programmers
+- mysql is not easy for programmers
+
+8) How does Node.js work?
+- clients send requests to the webserver from web application.
+- Node.js retrieves the incoming requests and adds into the Event Queue.
+- then request passed one-by-one through the Event Loop.
+- event loop process that request and returns the response to the clients.
+- Once the task is complete, then response is sent to the Event Loop after sends that response back to the client.
+
+9) What are the default modules in Node.js?
+- HTTP = Includes classes, methods, and events to create a Node.js HTTP server
+- util = Includes utility functions useful for developers
+- The node.js "util" module provides some functions to print formatted strings as well as some 'utility' functions.
+
+- fs = Includes events, classes, and methods to deal with file I/O operations
+- url = Includes methods for URL parsing
+- query string = get query perameters from url
+- path = use path from the project
+- stream = handle streaming data
+
+10) what is mongo db?
+- MongoDB is the most common database used with Node.js. It is a NoSQL, cross-platform, document-oriented database that provides high performance, high availability, and easy scalability.
+
+11) What does event-driven programming mean?
+- event can be anything, such as typing a key or mouse click event.
+- for that callback function is already register with the element whenever event is trigger.
+
+12)What is an EventEmitter in Node.js?
+- For the eventemitter create a class of event.
+- that class holds the object.
+- whenever an object from the eventemitter class throw an evnt that time functions are called synchronusly.
+
+13) What are streams in Node.js?
+- Streams are objects that enable you to read data or write data continuously.
+- Readable – Used for reading operations
+- Writable − Used for write operations
+- Duplex − Can be used for both reading and write operations
+- Transform − A type of duplex stream where the output is computed based on input (for the output)
+
+14) What is REPL in Node.js?
+- We can experiment on Nodejs code and Debug Javascript code.
+- REPL stands for Read Eval Print Loop and it represents a computer environment.
+- Read = read the user input.
+- eval = take and evalute data structure.
+- print = print the result.
+- Loop = loops the command.
+.
+15) difference between fork() and spawn()
+- Multiple workers run on a single node code base for multiple tasks. When fork is called, it creates a communication channel between the parent and child process= fork
+- single copy of the node module is active on the processor. does not execute any further code within your node process. it creates a streaming interface between the parent and child process.= spawn
+
+16) What is the buffer class in Node.js?
+- Buffer class stores raw data.
+- Buffer class is used because pure JavaScript is not compatible with binary data.
+
+17) What is callback hell?
+- result of intensively nested, unreadable, and unmanageable callbacks, which in turn makes the code harder to read and debug.
+
+18) Explain the concept of middleware in Node.js.
+-In general, middleware is a function receives the Request and Response objects. In other words, in an application’s request-response cycle these functions have access to various request &  response objects along with the next function of the cycle.
+ The next function of middleware is represented with the help of a variable, usually named next. Most commonly performed tasks by the middleware functions are:
+
+- Middleware is a function that receives the request and response objects.
+- Execute any code
+- Update or modify the request and the response objects
+- Finish the request-response cycle
+- Invoke the next middleware in the stack
+
+19) explain module in node.js
+- modules are reusable block of code.
+- modules are important for maintainability, reusability, namespacing of code.
+
+20) what is express.js
+- express.js is a framework of node.js
+- is a lightweight.
+- number of flexible useful and important features are provided.
+
+21) features of express.js
+- in express we can setup the middleware.
+- provided routing based functionality.
+- dynamically rendering html pages.
+- also providing mvc structure.
+- support nosql database.
+
+22) new features of es6?
+- const let keyword
+- arrow function
+- template string
+- rest spread oprators - Spread syntax can be used when all elements from an object or array need to be included in a list of some kind.
+- classes
+- modules
+- promises
+- destructing -  unpack values from arrays, or properties from objects
+
+23) es5
+ - array.map() - creates a new array with the results of calling a function for every array element.
+ - array.filter() - creates an array filled with all array elements that pass a test.
+ - array.reduce() - Subtract the numbers in the array, starting from the left:
+ - array.some()  - checks if any of the elements in an array pass a test(true or false)
+ - array.indexOf() - Index position
+
+24) what is promises?
+- the promise constructor take as an input as a function that will be executed immidiatly and then it will be passed in two functions resolve and reject.
+- when any function depends on the another function result that time we can use the promises function.
+- in promises our code is more readable and number of lines are minimum.
+- that's why we have to use promises.
+
+25) what is jwt?
+- The JSON web token (JWT) is one method for allowing authentication, without actually storing any information about the user on the system itself.
+
+26)what is closure?
+- defined within another scope that access all the variable within the outer scope.
+- globle variable can be made local with closure.
+
+27). How do you make node JS secure?
+-Here are some best practices to make your NodeJS application secure:
+
+-Limit the number of concurrent requests through middleware such as cloud firewalls, cloud load balancers, etc.
+-Adjust the HTTP response using secure headers for enhanced security and blocking vulnerabilities such as XSS, clickjacking, etc.
+-Use a secure hash + salt function such as bcrypt to store passwords, API keys, and secrets instead of Node.js crypto library.
+-Limit brute-force authorization attacks by limiting the number of failed login attempts and, in such a case, ban the user's IP address.
+-Limit your payload size by using a reverse-proxy or a middleware.
+-Avoid pushing secrets on to the npm registry.
+-Use cookies securely.
+-Ensure the security of all your dependencies.
+
+28) what is elastic search?
+“Elasticsearch is a distributed and open source analytic and analysis engine for all types of data, including textual, numeric, geospatial, structured and unstructured”.
+
+29) what are web services?
+A web service is any piece of software that makes itself available over the internet and uses a standardized XML messaging system.
+
+30)   what is RESTapi?
+REST stands for REpresentational State Transfer. REST is web standards based architecture and uses HTTP Protocol.
+It revolves around resource where every component is a resource and a resource is accessed by a common interface using HTTP standard methods.
+
+
+31) Tell about your past project & current project.
+32) What is nodejs?
+33) What is async-await in nodejs?
+34) What is middleware?
+35) What is difference between npm and nvm?
+36) What is difference between fork and spwan method?
+37) Tell about some ES6 features?
+38) What is arrow function?
+39) What is authentication and authorization? Tell difference between?
+40) What is promise? Explain its states?
+41) What is nodejs eventemitter?
+42) What is unit testing? show it you used in your project?
+43) Explain worker threads?
+44) Write a program to sort smallest/largest number in array?
+45) Write a program sort array using rest operator?
+46) What about indexes in database?
+47) Write a program to concat two array?
+48) What is event loop?
+49) Explain foreign key and primary key?
+50) Difference between ES5 and ES6?
+51) Javascript prototype?
+51) Difference between javascript vs nodejs?
+53) What is middleware?
+54) this keyword in javascript?
+55) Difference between SQL vs NoSQL?
+56) What is setTimeout and setInterval?
+57) How to join two collections in MongoDB?
+58) Explain Primitive dataypes and Non-primitive datatypes?
+59) Explain arrow function in javascript?
+60) Explain var,let,const?
+61) What is Schema ?
+62) Which ORM you have used ?
+63) What variable hoisting ?
+64) What is map, reduce and filter ?
+65) what is difference between npm, nvm and npx?
+66) what is redis?
+67) what is package json do?
+68) Find unique element in an array without using any additional libraries or array method.
+69) Recursive factorial function.
+70) Write code for promise , callback , Async await.
+71) Write code for user login using express.
+72)  Classes in JS
+73) console.log( 2 + true), console.log(2 + 'true')
+74) What are primitive datatypes? Why it is called primitive?
+75) What is lexical scoping?
+76) What is indexing? why it is used in database?
+77) What is difference between primitive and non-primitive datatype? why array is non primitive?
+78) what is difference between == and === operator ? What will be output of [1,2,3] === [1,2,3] and why?
+79) What is difference between variable and function?
+80) What is difference between null and undefined?
+81) What is bind method? When and how to use it.
+82)  What will be the output of following program?
+var i = 10;
+function foo() {
+console.log(i);
+var i = 20;
+}
+foo()
+
+83) What will be the output of following program?
+let i = 10
+function foo() {
+console.log('i is',i);
+let i = 20;
+}
+foo()
+84) explain this keyword
+85) Difference between arrow functions and normal functions?
+86) What is microservice architecture in detail.
+87) Pros and Cons. of node js.
+88) 
+
+
+
+
+
+
+
+
+https://blog.bitsrc.io/journey-from-callbacks-to-promises-to-async-await-6fcd7f7fa3c5
+
+https://www.simplilearn.com/node-js-interview-questions-and-answers-article
+
+https://www.onlineinterviewquestions.com/node-js-interview-questions/#question1
+
+These template engines work “out-of-the-box” with Express:
+
+Pug: Haml-inspired template engine (formerly Jade).
+Haml.js: Haml implementation.
+EJS: Embedded JavaScript template engine.
+hbs: Adapter for Handlebars.js, an extension of Mustache.js template engine.
+Squirrelly: Blazing-fast template engine that supports partials, helpers, custom tags, filters, and caching. Not white-space sensitive, works with any language.
+Eta: Super-fast lightweight embedded JS template engine. Supports custom delimiters, async, whitespace control, partials, caching, plugins.
+React: Renders React components on the server. It renders static markup and does not support mounting those views on the client.
+h4e: Adapter for Hogan.js, with support for partials and layouts.
+hulk-hogan: Adapter for Twitter’s Hogan.js (Mustache syntax), with support for Partials.
+combyne.js: A template engine that hopefully works the way you’d expect.
+swig: Fast, Django-like template engine.
+Nunjucks: Inspired by jinja/twig.
+marko: A fast and lightweight HTML-based templating engine that compiles templates to CommonJS modules and supports streaming, async rendering and custom tags. (Renders directly to the HTTP response stream).
+whiskers: Small, fast, mustachioed.
+Blade: HTML Template Compiler, inspired by Jade & Haml.
+Haml-Coffee: Haml templates where you can write inline CoffeeScript.
+Webfiller: Plain-html5 dual-side rendering, self-configuring routes, organized source tree, 100% js.
+express-hbs: Handlebars with layouts, partials and blocks for express 3 from Barc.
+express-handlebars: A Handlebars view engine for Express which doesn’t suck.
+express-views-dom: A DOM view engine for Express.
+rivets-server: Render Rivets.js templates on the server.
+Exbars: A flexible Handlebars view engine for Express.
+Liquidjs: A Liquid engine implementation for both Node.js and browsers.
+express-tl: A template-literal engine implementation for Express.
+vuexpress: A Vue.js server side rendering engine for Express.js.
+Twing: First-class Twig engine for Node.js.
