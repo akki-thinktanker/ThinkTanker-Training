@@ -30,8 +30,7 @@ server.use(express.static("public"));
 // API ROOT, base URL, example: google.com/api/v2/
 
 // CREATE POST /products
-
-server.post("/", (req, res) => {
+server.post("/products", (req, res) => {
   console.log(req.body);
   products.push(req.body);
   res.status(201).json(req.body);

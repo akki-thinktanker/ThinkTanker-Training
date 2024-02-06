@@ -186,92 +186,70 @@ const convertToNumber = (currencyString) =>
   parseInt(currencyString.replace(/[^0-9]/g, ""), 10);
 
 ///////////////////////////////////////////////
-var bikeModels = [];
+const companyName = "Lamborghini";
+const bikeName = "Kawasaki";
+let highestPrice = 0;
+
+var BikesWithPrice = [];
 Garage.forEach((item) => {
   const key = Object.keys(item);
-  // console.log(key);
-  // console.log(item)
   if (key == "Cars") {
-    // console.log('cars')
-    // console.log(item.Cars)
     if (item.Cars) {
-      // console.log("Sports car")
       if (item.Cars.sports_cars) {
-        // console.log(item.Cars.sports_cars);
         item.Cars.sports_cars.forEach((car) => {
-          // if (car.Company == "Porsche") {
-          //   console.log("Porsche");
-          // }
-          // if (car.Company == "Mercedes") {
-          //   console.log("Mercedes");
-          // }
-          // if (car.Company == "Lamborghini") {
-          //   console.log("Lamborghini");
-          // }
+          if (car.Company == `${companyName}`) {
+            // console.log(`${companyName}`);
+          }
         });
       }
     }
   } else if (key == "Bikes") {
-    // console.log('Bikes')
     if (item.Bikes) {
-      // console.log("Sports car")
       if (item.Bikes.sports_bikes) {
-        // console.log(item.Bikes.sports_bikes);
         item.Bikes.sports_bikes.forEach((bike) => {
-          if (bike.Company == "Kawasaki") {
-            // console.log("Kawasaki");
-            const kawasakiModels = bike.Models;
-            // console.log(kawasakiModels)
-            kawasakiModels.forEach((bikeModel, idx) => {
-              // console.log(bikeModel[idx + 1]);
-              bikeModels.push(bikeModel[idx + 1]);
+          if (bike.Company == `${bikeName}`) {
+            // console.log(`${bikeName}`);
+            const bikeModels = bike.Models;
+            // console.log(bikeModels);
+
+            bikeModels.forEach((bikeByKey, idx) => {
+              BikesWithPrice.push(bikeByKey[idx + 1]);
             });
 
+            // console.log(BikesWithPrice);
 
+            BikesWithPrice.forEach((bikename) => {
+              Object.values(bikename.Price)
+                //   console.log(Object.values(bikename.Price))
+                .forEach((currStr) => {
+                  // console.log(currStr)
+                  const num = convertToNumber(currStr);
+                  if (num > highestPrice) {
+                    highestPrice = num;
+                  }
+                });
+            });
 
-// let highestNum = 0;
+            const highStr = `₹${highestPrice.toLocaleString("en-IN")}`;
+            console.log(highStr);
 
-// KawasakiPrice.forEach((kawasaki) => {
-//   Object.values(kawasaki).forEach((currStr) => {
-//     const num = convertToNumber(currStr);
-//     if (num > highestNum) {
-//       highestNum = num;
-//     }
-//   });
-// });
+            BikesWithPrice.forEach((bikePrice) => {
+                let values = Object.values(bikePrice.Price)
+                // console.log(values);
+                if(values.includes(highStr))
+                {
+                    console.log(`Highest price found`)
+                    const ans = {}
+                    ans.Model_name = `${bikePrice.Name}`
+                    ans.Price = `${highStr}`
+                console.log(ans)
 
-// const highStr = `₹${highestNum.toLocaleString("en-US")}`;
-// console.log(highStr);
-
-
-
-
-
-
-
-
-
-
-
-            bikeModels.forEach((bikePrice) => {
-              // if(bikePrice == highestPrice)
-              // {
-              //   console.log()
-              // }
-              let keys = Object.keys(bikePrice.Price)
-              console.log(keys);
+                }
+                // console.log(bikePrice.Name)
+               
+                // console.log(`Model_name: ${bikePrice.Name}, Price: ${highestPrice}`)
             });
           }
-          // if (bike.Company == "BMW") {
-          //   // console.log("BMW");
-          //   const bmwModels = bike.Models
-          //   console.log(bmwModels)
-          // }
-          // if (bike.Company == "Ducati") {
-          //   // console.log("Ducati");
-          //   const ducatiModels = bike.Models
-          //   console.log(ducatiModels)
-          // }
         });
       }
     }
@@ -279,48 +257,3 @@ Garage.forEach((item) => {
     console.log("We can't find anything");
   }
 });
-
-// console.log(bikeModels)
-//////////////////////////////////////////////////
-
-// old logic
-
-//   const KawasakiModels = Garage[1]?.Bikes?.sports_bikes?.find(
-//     (bike) => bike?.Company == "Kawasaki"
-//   )?.Models;
-//   const KawasakiBikes = KawasakiModels.map((kawasaki, idx) => kawasaki[idx + 1]);
-
-//   const KawasakiPrice = KawasakiBikes.map((kawasaki, idx) => kawasaki.Price); // we got price in array of objects
-
-//   console.log(KawasakiBikes)
-// //   console.log(KawasakiPrice)
-
-//   KawasakiPrice.forEach((el, idx) => {
-//     if (el[idx]) {
-//       for (let i = 1; i <= 3; i++) {
-//         // console.log(el);
-//       }
-//     }
-//   });
-
-// Function to convert currency string to number
-// const convertToNumber = (currencyString) =>
-//   parseInt(currencyString.replace(/[^0-9]/g, ""), 10);
-
-// let highestNum = 0;
-
-// KawasakiPrice.forEach((kawasaki) => {
-//   Object.values(kawasaki).forEach((currStr) => {
-//     const num = convertToNumber(currStr);
-//     if (num > highestNum) {
-//       highestNum = num;
-//     }
-//   });
-// });
-
-// const highStr = `₹${highestNum.toLocaleString("en-US")}`;
-// console.log(highStr);
-
-// console.log(KawasakiModels);
-// console.log(KawasakiBikes);
-// console.log(KawasakiPrice);
