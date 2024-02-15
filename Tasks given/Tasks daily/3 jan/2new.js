@@ -1,7 +1,7 @@
-// # (3) Get most expensive model from "Kawasaki" company with price.
+// # (2) Get 2nd model of "Ducati" company with 3rd price.
 // '''
-// Output :-
-// {'Model_name': 'Kawasaki Ninja H2', 'Price': '₹79,99,000'}
+// Outout :-
+// {'Model_name': 'Ducati Streetfighter V4', 'Price': '₹24,15,000'}
 // '''
 
 const Garage = [
@@ -111,19 +111,19 @@ const Garage = [
           Company: "Kawasaki",
           Models: [
             {
-              3: {
+              1: {
                 Name: "Kawasaki Ninja ZX-10R",
                 Price: { 1: "₹15,99,000", 2: "₹16,99,000", 3: "₹17,99,000" },
               },
             },
             {
-              3: {
+              2: {
                 Name: "Kawasaki Ninja H2",
-                Price: { 3: "₹79,90,000", 2: "₹79,95,000", 1: "₹79,99,000" },
+                Price: { 1: "₹79,90,000", 2: "₹79,95,000", 3: "₹79,99,000" },
               },
             },
             {
-              2: {
+              3: {
                 Name: "Kawasaki Ninja 1000SX",
                 Price: { 1: "₹12,20,000", 2: "₹12,22,000", 3: "₹12,25,000" },
               },
@@ -157,19 +157,19 @@ const Garage = [
           Company: "Ducati",
           Models: [
             {
-              1: {
+              2: {
                 Name: "Ducati Panigale V2",
-                Price: { 1: "₹20,27,000", 2: "₹21,30,000", 3: "₹22,00,000" },
+                Price: { 1: "₹20,27,000", 3: "₹21,30,000", 1: "₹22,00,000" },
               },
             },
             {
               3: {
                 Name: "Ducati Streetfighter V2",
-                Price: { 1: "₹18,10,000", 2: "₹19,10,000", 3: "₹20,10,000" },
+                Price: { 1: "₹18,10,000", 3: "₹19,10,000", 2: "₹20,10,000" },
               },
             },
             {
-              2: {
+              1: {
                 Name: "Ducati Streetfighter V4",
                 Price: { 1: "₹22,15,000", 2: "₹23,15,000", 3: "₹24,15,000" },
               },
@@ -181,81 +181,43 @@ const Garage = [
   },
 ];
 
-// Function to convert currency string to number
-const convertToNumber = (currencyString) =>
-  parseInt(currencyString.replace(/[^0-9]/g, ""), 10);
+const companyName = "Ducati";
 
-///////////////////////////////////////////////
-const companyName = "Lamborghini";
-const bikeName = "Kawasaki";
-let highestPrice = 0;
+for (let i = 0; i < Garage.length; i++) {
+  // console.log(typeof Garage[i])
+  if (Object.keys(Garage[i]) == "Bikes") {
+    const Bikes = Garage[i].Bikes;
+    // console.log(Bikes)
+    if (Bikes.sports_bikes) {
+      const bikeModel = Bikes.sports_bikes.find(
+        (bike) => bike.Company == `${companyName}`
+      ).Models;
+      let secondDucati = bikeModel.find((ducati) => ducati[2]);
+      secondDucati = secondDucati[2];
+      const ThirdPrice = secondDucati.Price[3];
+      // console.log(secondDucati) // cause we only want 2nd ducati
 
-var BikesWithPrice = [];
-Garage.forEach((item) => {
-  const key = Object.keys(item);
-  if (key == "Cars") {
-    if (item.Cars) {
-      if (item.Cars.sports_cars) {
-        item.Cars.sports_cars.forEach((car) => {
-          if (car.Company == `${companyName}`) {
-            // console.log(`${companyName}`);
-          }
-        });
-      }
+      //   console.log(secondDucati);
+
+      const ans = {};
+
+      ans.Model_Name = secondDucati["Name"];
+      ans.Price = ThirdPrice;
+
+      console.log(ans);
+    } else {
+      console.log("Sports bike not found");
     }
-  } else if (key == "Bikes") {
-    if (item.Bikes) {
-      if (item.Bikes.sports_bikes) {
-        item.Bikes.sports_bikes.forEach((bike) => {
-          if (bike.Company == `${bikeName}`) {
-            // console.log(`${bikeName}`);
-            const bikeModels = bike.Models;
-            // console.log(bikeModels);
-
-            bikeModels.forEach((bikeByKey, idx) => {
-              // console.log(...Object.values(bikeByKey))
-              BikesWithPrice.push(...Object.values(bikeByKey));
-              // BikesWithPrice.push(bikeByKey[idx + 1]);
-            });
-
-            console.log(BikesWithPrice);
-
-            BikesWithPrice.forEach((bikename) => {
-              Object.values(bikename.Price)
-                //   console.log(Object.values(bikename.Price))
-                .forEach((currStr) => {
-                  // console.log(currStr)
-                  const num = convertToNumber(currStr);
-                  if (num > highestPrice) {
-                    highestPrice = num;
-                  }
-                });
-            });
-
-            const highStr = `₹${highestPrice.toLocaleString("en-IN")}`;
-            console.log(highStr);
-
-            BikesWithPrice.forEach((bikePrice) => {
-                let values = Object.values(bikePrice.Price)
-                // console.log(values);
-                if(values.includes(highStr))
-                {
-                    // console.log(`Highest price found`)
-                    const ans = {}
-                    ans.Model_name = `${bikePrice.Name}`
-                    ans.Price = `${highStr}`
-                console.log(ans)
-
-                }
-                // console.log(bikePrice.Name)
-               
-                // console.log(`Model_name: ${bikePrice.Name}, Price: ${highestPrice}`)
-            });
-          }
-        });
-      }
-    }
-  } else {
-    console.log("We can't find anything");
   }
-});
+}
+
+// const bikeModel = Garage[1].Bikes.sports_bikes.find(
+//   (bike) => bike.Company == `${companyName}`
+// ).Models;
+
+// const secondDucati = bikeModel.find((ducati) => ducati[2]);
+// const ThirdPrice = secondDucati[2].Price[3];
+
+// console.log(DucatiModel);
+//   console.log(secondDucati);
+//   console.log(ans);

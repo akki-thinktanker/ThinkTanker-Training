@@ -117,13 +117,13 @@ const Garage = [
               },
             },
             {
-              2: {
+              3: {
                 Name: "Kawasaki Ninja H2",
-                Price: { 1: "₹79,90,000", 2: "₹79,95,000", 3: "₹79,99,000" },
+                Price: { 3: "₹79,90,000", 2: "₹79,95,000", 1: "₹79,99,000" },
               },
             },
             {
-              3: {
+              2: {
                 Name: "Kawasaki Ninja 1000SX",
                 Price: { 1: "₹12,20,000", 2: "₹12,22,000", 3: "₹12,25,000" },
               },
@@ -227,38 +227,26 @@ Garage.forEach((item) => {
               bikeModels.push(bikeModel[idx + 1]);
             });
 
+            // let highestNum = 0;
 
+            // KawasakiPrice.forEach((kawasaki) => {
+            //   Object.values(kawasaki).forEach((currStr) => {
+            //     const num = convertToNumber(currStr);
+            //     if (num > highestNum) {
+            //       highestNum = num;
+            //     }
+            //   });
+            // });
 
-// let highestNum = 0;
-
-// KawasakiPrice.forEach((kawasaki) => {
-//   Object.values(kawasaki).forEach((currStr) => {
-//     const num = convertToNumber(currStr);
-//     if (num > highestNum) {
-//       highestNum = num;
-//     }
-//   });
-// });
-
-// const highStr = `₹${highestNum.toLocaleString("en-US")}`;
-// console.log(highStr);
-
-
-
-
-
-
-
-
-
-
+            // const highStr = `₹${highestNum.toLocaleString("en-US")}`;
+            // console.log(highStr);
 
             bikeModels.forEach((bikePrice) => {
               // if(bikePrice == highestPrice)
               // {
               //   console.log()
               // }
-              let keys = Object.keys(bikePrice.Price)
+              let keys = Object.keys(bikePrice.Price);
               console.log(keys);
             });
           }

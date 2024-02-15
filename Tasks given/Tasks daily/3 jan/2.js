@@ -158,19 +158,19 @@ const Garage = [
             Company: "Ducati",
             Models: [
               {
-                1: {
+                3: {
                   Name: "Ducati Panigale V2",
                   Price: { 1: "₹20,27,000", 2: "₹21,30,000", 3: "₹22,00,000" },
                 },
               },
               {
-                2: {
+                1: {
                   Name: "Ducati Streetfighter V2",
                   Price: { 1: "₹18,10,000", 3: "₹19,10,000", 2: "₹20,10,000" },
                 },
               },
               {
-                3: {
+                2: {
                   Name: "Ducati Streetfighter V4",
                   Price: { 1: "₹22,15,000", 2: "₹23,15,000", 3: "₹24,15,000" },
                 },
@@ -181,12 +181,15 @@ const Garage = [
       },
     },
   ];
+
+  const companyName = 'Ducati'
   
-  const DucatiModel = Garage[1].Bikes.sports_bikes.find(
-    (bike) => bike.Company == "Ducati"
+  const bikeModel = Garage[1].Bikes.sports_bikes.find(
+    (bike) => bike.Company == `${companyName}`
   ).Models;
   
-  const secondDucati = DucatiModel.find((ducati) => ducati[2])
+  const secondDucati = bikeModel.find((ducati) => ducati[2])
+  console.log(secondDucati)
   const ThirdPrice = secondDucati[2].Price[3]
   
   const ans = {};
