@@ -1,0 +1,7 @@
+I encountered two unexpected errors during my project, but I managed to resolve them. Sharing this in case it helps someone else:
+
+1) When using the .env file for sensitive information like a secret key, I initially masked it using asterisks (***********). However, this caused an 'Invalid Signature' error. The fix was to ensure the secret key not in asterisks format.
+
+2) I faced issues while setting up the MONGODB_URI. Adding the query parameters ?retryWrites=true&w=majority resulted in an error, preventing the creation of my database collection. Removing these parameters resolved the issue.
+
+Hope this insight saves someone else valuable time and frustration! Thank you for sharing your experiences.
