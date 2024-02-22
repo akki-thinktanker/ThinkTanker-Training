@@ -1,60 +1,39 @@
-const { resolveSoa } = require('dns');
 const express = require('express');
-const fs = require('fs');
+const morgan = require('morgan');
+
+const tourRouter = require('./routes/tourRoutes.route');
+const userRouter = require('./routes/userRoutes.route');
 
 const app = express();
-const port = 3000;
 
-// middleware
+// 1) MIDDLEWARE
+app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
 
-// app.get('/', (req, res) => {
-//   res
-//     .status(404)
-//     .json({ message: 'Hello from the server side!', app: 'Natours' });
-// });
+app.use((req, res, next) => {
+  console.log('Hello from the middleware 🙋‍♂️');
 
-// app.post('/', (req, res) => {
-//     res.send('You can post this endpoint');
-// });
-
-const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
-);
-
-app.get('/api/v1/tours', (req, res) => {
-  //
-  res.status(200).json({
-    status: 'success',
-    results: tours.length,
-    data: {
-      tours: tours,
-    },
-  });
+  next();
 });
 
-app.post('/api/v1/tours', (req, res) => {
-  //
-  const newId = tours[tours.length - 1].id + 1;
-  const newTour = Object.assign({ id: newId }, req.body);
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
 
-  tours.push(newTour);
-
-  fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
-    JSON.stringify(tours),
-    (err) => {
-      // 201 - created
-      res.status(201).json({
-        status: 'success',
-        data: {
-          tour: newTour,
-        },
-      });
-    }
-  );
+  next();
 });
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}`);
-});
+// 2) ROUTE HANDLERS
+
+// app.get('/api/v1/tours', getAllTours);
+// app.get('/api/v1/tours/:id', getTour);
+// app.post('/api/v1/tours', createTour);
+// app.patch('/api/v1/tours/:id', updateTour);
+// app.delete('/api/v1/tours/:id', deleteTour);
+
+// 3) ROUTES
+
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
+
+module.exports = app;
