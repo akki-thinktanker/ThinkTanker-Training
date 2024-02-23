@@ -7,19 +7,22 @@ const userRouter = require('./routes/userRoutes.route');
 const app = express();
 
 // 1) MIDDLEWARE
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 
+// own middlewares
 app.use((req, res, next) => {
-  console.log('Hello from the middleware 🙋‍♂️');
+  // console.log('Hello from the middleware 🙋‍♂️');
 
   next();
 });
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-
+  // console.log(req.requestTime)
   next();
 });
 
