@@ -5,15 +5,17 @@ class APIFeatures {
   }
 
   filter() {
+    // BUILD QUERY
+    // 1A) Filtering
     const queryObj = { ...this.queryString };
     const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach(el => delete queryObj[el]);
+    excludedFields.forEach((el) => delete queryObj[el]);
 
     // 1B) Advanced filtering
     let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
-    this.query = this.query.find(JSON.parse(queryStr));
+    this.query.find(JSON.parse(queryStr));
 
     return this;
   }
@@ -26,10 +28,12 @@ class APIFeatures {
       this.query = this.query.sort('-createdAt');
     }
 
-    return this;  
+    return this;
   }
 
   limitFields() {
+    //
+    // 3) Filed Limiting
     if (this.queryString.fields) {
       const fields = this.queryString.fields.split(',').join(' ');
       this.query = this.query.select(fields);
@@ -41,6 +45,8 @@ class APIFeatures {
   }
 
   paginate() {
+    //
+    // 4) Pagination
     const page = this.queryString.page * 1 || 1;
     const limit = this.queryString.limit * 1 || 100;
     const skip = (page - 1) * limit;
@@ -50,4 +56,5 @@ class APIFeatures {
     return this;
   }
 }
+
 module.exports = APIFeatures;
