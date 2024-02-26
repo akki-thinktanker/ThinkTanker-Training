@@ -181,29 +181,65 @@ const Garage = [
   },
 ];
 
-const companyName = "Ducati";
+const companyName = "Kawasaki";
 
 // Function to convert currency string to number
 const convertToNumber = (currencyString) =>
   parseInt(currencyString.replace(/[^0-9]/g, ""), 10);
 
+// const kawasakiss = Garage[1]?.Bikes?.sports_bikes
+//   ?.filter((el) => el.Company == `${companyName}`)[0]
+//   ?.Models.map((el) => Object.values(el))
+//   ?.map((el) => el[0]);
+
+// const prices = kawasakis.map((el) => Object.values(el.Price))?.flat(1);
+// const highestPrice1 = Math.max(...prices.map((el) => convertToNumber(el)));
+// const highStr = `₹${highestPrice1.toLocaleString("en-IN")}`;
+
+// const kawasakis = Garage[1]?.Bikes?.sports_bikes
+//   ?.filter((el) => el.Company == `${companyName}`)[0]
+//   ?.Models.map((el) => Object.values(el))
+//   ?.map((el) => el[0]);
+
+// const prices = kawasakis.map((el) => Object.values(el.Price))?.flat(1);
+// const highestPrice1 = Math.max(...prices.map((el) => convertToNumber(el)));
+// const highStr = `₹${highestPrice1.toLocaleString("en-IN")}`;
+
+// const ans = {};
+// const highestBikeName = kawasakis.find((el) =>
+//   Object.values(el?.Price).includes(highStr)
+// )?.Name;
+
+// ans.Model_name = highestBikeName;
+// ans.Price = highStr;
+
+// console.log(ans);
+
 const kawasakis = Garage[1]?.Bikes?.sports_bikes
   ?.filter((el) => el.Company == `${companyName}`)[0]
   ?.Models.map((el) => Object.values(el))
   ?.map((el) => el[0]);
-const prices = kawasakis.map((el) => Object.values(el.Price))?.flat(1);
-const highestPrice1 = Math.max(...prices.map((el) => convertToNumber(el)));
-const highStr = `₹${highestPrice1.toLocaleString("en-IN")}`;
+if (kawasakis) {
+  // console.log(kawasakis);
+  const prices = kawasakis.map((el) => Object.values(el.Price))?.flat(1);
+  if (prices) {
+    const highestPrice1 = Math.max(...prices.map((el) => convertToNumber(el)));
+    const highStr = `₹${highestPrice1.toLocaleString("en-IN")}`;
 
-const ans = {};
-const highestBikeName = kawasakis.find((el) =>
-  Object.values(el?.Price).includes(highStr)
-)?.Name;
+    const ans = {};
+    const highestBikeName = kawasakis.find((el) =>
+      Object.values(el?.Price).includes(highStr)
+    )?.Name;
 
-ans.Model_name = highestBikeName;
-ans.Price = highStr;
-
-console.log(ans);
+    ans.Model_name = highestBikeName;
+    ans.Price = highStr;
+    console.log(ans);
+  } else {
+    console.log(`can't find price`);
+  }
+} else {
+  console.log("No bike found");
+}
 
 ///////////////////////////////////////////////
 // const bikeName = "Kawasaki";
