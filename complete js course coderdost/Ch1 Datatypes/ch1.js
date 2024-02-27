@@ -148,6 +148,8 @@ let fullNameString = `My name is ${firstName} ${lastName}`
 // numbers
 
 let score = 50
+let a;
+console.log(`typeof a`, typeof null)
 
 // console.log(score, typeof score)
 
