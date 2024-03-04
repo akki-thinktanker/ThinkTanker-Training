@@ -15,7 +15,7 @@ router.post('/login', login)
 
 
 router.post('/forgotPassword', forgotPassword)
-router.post('/resetPassword', resetPassword)
+router.post('/resetPassword/:token', resetPassword)
 
 // User routes
 router.route('/').get(getAllUsers).post(createUser);
