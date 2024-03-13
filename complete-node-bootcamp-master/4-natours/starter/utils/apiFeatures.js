@@ -20,6 +20,8 @@ class APIFeatures {
     return this;
   }
 
+  // 2) Sorting
+
   sort() {
     if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(',').join('');
@@ -31,9 +33,9 @@ class APIFeatures {
     return this;
   }
 
+  // 3) Filed Limiting
+
   limitFields() {
-    //
-    // 3) Filed Limiting
     if (this.queryString.fields) {
       const fields = this.queryString.fields.split(',').join(' ');
       this.query = this.query.select(fields);
@@ -44,9 +46,9 @@ class APIFeatures {
     return this;
   }
 
+  // 4) Pagination
+
   paginate() {
-    //
-    // 4) Pagination
     const page = this.queryString.page * 1 || 1;
     const limit = this.queryString.limit * 1 || 100;
     const skip = (page - 1) * limit;

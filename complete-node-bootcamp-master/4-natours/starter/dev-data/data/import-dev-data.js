@@ -11,8 +11,6 @@ const DB = process.env.DATABASE.replace(
 );
 
 mongoose
-  // For local
-  // .connect(process.env.DATABASE_LOCAL, {
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -25,7 +23,7 @@ mongoose
 //   READ JSON FILE
 
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8'),
+  fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'),
 );
 
 // IMPORT DATA INTO DB
@@ -39,7 +37,7 @@ const importData = async () => {
   process.exit();
 };
 
-// DELETE ALL DATA FROM DATABASE
+// DELETE ALL DATA FROM DB
 const deleteData = async () => {
   try {
     await Tour.deleteMany();
@@ -53,8 +51,8 @@ const deleteData = async () => {
 if (process.argv[2] === '--import') {
   importData();
 }
-if (process.argv[2] === '--delete') {
+else if (process.argv[2] === '--delete') {
   deleteData();
 }
 
-console.log(process.argv);
+// console.log(process.argv);

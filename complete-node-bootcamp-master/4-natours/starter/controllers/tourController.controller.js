@@ -5,7 +5,7 @@ const catchAsync = require("../utils/catchAsync");
 
 exports.aliasTopTour = (req, res, next) => {
   req.query.limit = "5";
-  req.query.sort = "ratingsAverage,-price";
+  req.query.sort = "-fprice,ratingsAverage";
   req.query.fields = "name,price,ratingsAverage,summary,difficulty";
   next();
 };
@@ -17,21 +17,22 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
     .sort()
     .limitFields()
     .paginate();
+
+
   const tours = await features.query;
 
   // SEND RESPONSE
   res.status(200).json({
     status: "success",
-    requestedAt: req.requestTime,
     results: tours.length,
     data: {
-      tours: tours,
+      tours,
     },
   });
 });
 
 exports.getTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findById(req.params.id);
+  const tour = await Tour.findById(req.params.id).populate('guides');
   // Tour.findOne({ _id: req.params.id });
   console.log(tour)
 
@@ -84,7 +85,7 @@ exports.deleteTour = catchAsync(async (req, res, next) => {
 
   res.status(204).json({
     status: "success",
-    data: null,
+    data: tour,
   });
 });
 
