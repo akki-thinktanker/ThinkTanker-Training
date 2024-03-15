@@ -13,7 +13,7 @@ const tourSchema = new mongoose.Schema(
       maxlength: [40, "A tour name must have less or equal than 40 characters"],
       minlength: [
         10,
-        "A tour name must have more  or equal than 10 characters",
+        "A tour name must have more or equal than 10 characters",
       ],
       // validate: [validator.isAlpha, 'Tour name must only contatin characters'], // won't allow spaces in our name
     },
@@ -137,6 +137,8 @@ tourSchema.pre("save", function (next) {
 //   next();
 // });
 
+////////////////////////////////////
+
 // QUERY MIDDLEWARE
 // tourSchema.pre('find', function (next) {
 tourSchema.pre(/^find/, function (next) {
@@ -150,6 +152,8 @@ tourSchema.post(/^find/, function (docs, next) {
   console.log(`Query took ${Date.now() - this.start} milliseconds`);
   next();
 });
+
+
 tourSchema.virtual("durationWeeks").get(function () {
   return this.duration / 7;
 });
