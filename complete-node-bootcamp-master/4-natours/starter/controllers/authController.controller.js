@@ -42,6 +42,8 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
+    passwordChangedAt: req.body.passwordChangedAt,
+    role: req.body.role
   });
 
   createSendToken(newUser, 201, res);
@@ -127,7 +129,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     return next(new AppError("There is no user with email address.", 404));
   }
 
-  // 2) Generate the random token
+  // 2) Generate the random reset token
   const resetToken = user.createPasswordResetToken();
 
   await user.save({ validateBeforeSave: false });
