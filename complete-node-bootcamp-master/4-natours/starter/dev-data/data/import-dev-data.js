@@ -7,7 +7,7 @@ dotenv.config({ path: './config.env' });
 
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
-  process.env.DATABASE_PASS,
+  process.env.DATABASE_PASSWORD,
 );
 
 mongoose
@@ -15,6 +15,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
+   useUnifiedTopology: true 
   })
   .then(() => {
     console.log('DB connection successful');

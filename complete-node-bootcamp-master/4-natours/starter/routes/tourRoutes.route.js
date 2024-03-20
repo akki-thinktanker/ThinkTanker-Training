@@ -10,8 +10,17 @@ const {
   getMonthlyPlan,
 } = require("../controllers/tourController.controller");
 const authController = require("./../controllers/authController.controller");
-
+const reviewRouter = require('../routes/reviewRoutes.route')
 const router = express.Router();
+
+
+
+// POST /tour/234fdsa4/reviews
+// GET /tour/234fdsa4/reviews
+
+router.use('/:tourId/reviews', reviewRouter)
+
+
 
 router.route("/top-5-cheap").get(aliasTopTour, getAllTours);
 
@@ -33,3 +42,4 @@ router
   );
 
 module.exports = router;
+  

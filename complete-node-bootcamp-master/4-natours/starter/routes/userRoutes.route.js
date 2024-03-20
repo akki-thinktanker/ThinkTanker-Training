@@ -15,7 +15,9 @@ const {
   resetPassword,
   protect,
   updatePassword,
+  restrictTo,
 } = require("../controllers/authController.controller");
+const reviewController = require('../controllers/reviewController.controller')
 
 const router = express.Router();
 
@@ -34,5 +36,7 @@ router.delete('/deleteMe', protect, deleteMe)
 router.route("/").get(getAllUsers)
 // .post(createUser); // commented create user in userController
 router.route("/:id").get(getUser).patch(updateUser).delete(deleteUser);
+
+
 
 module.exports = router;
