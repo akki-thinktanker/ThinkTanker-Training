@@ -34,7 +34,7 @@ const sendErrorDev = (err, res) => {
 };
 
 const sendErrorProd = (err, res) => {
-  // Operational trusted error: send message to the client
+  // Operational, trusted error: send message to the client
   if (err.isOperational) {
     res.status(err.statusCode).json({
       status: err.status,
@@ -44,7 +44,7 @@ const sendErrorProd = (err, res) => {
   // Programming or other unknown error: don't leak error details
   else {
     // 1) Log error
-    console.log("Error 💥", err);
+    console.error("Error 💥", err);
 
     // 2) Send generic message
 
@@ -63,7 +63,7 @@ module.exports = (err, req, res, next) => {
     sendErrorDev(err, res);
   } else if (process.env.NODE_ENV === "production") {
     let error = { ...err };
-
+    console.log(error);
     if (error.name === "CastError") error = handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     if (error.name === "ValidationError")

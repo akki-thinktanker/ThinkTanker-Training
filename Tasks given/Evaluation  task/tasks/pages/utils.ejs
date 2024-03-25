@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Utils</title>
+  </head>
+  <body>
+    <form action="/utils" method="post">
+      <label for="input">Input String</label>
+      <input type="text" name="stringVal" />
+      <br />
+
+      <input type="radio" class="operation" name="operation" value="first" />
+      Return the A-Z <br />
+      <input type="radio" class="operation" name="operation" value="second" />
+      Return the a-z<br />
+      <input type="radio" class="operation" name="operation" value="third" />
+      Return the 0-9<br />
+      <input type="radio" class="operation" name="operation" value="fourth" />
+      Return only special characters. <br />
+      <input type="radio" class="operation" name="operation" value="fifth" />
+      Return only vowels (a, e, i, o, u).<br />
+      <input type="radio" class="operation" name="operation" value="sixth" />
+      Return only consonants.<br />
+      <input type="radio" class="operation" name="operation" value="seventh" />
+      Print characters/digits at odd positions.<br />
+      <input type="radio" class="operation" name="operation" value="eighth" />
+      Print characters/digits at even positions.<br />
+      <input type="radio" class="operation" name="operation" value="ninth" />
+      Reverse the input.<br />
+      <input type="radio" class="operation" name="operation" value="tenth" />
+      Find the second last character/digit/number in the input.<br />
+
+      <br />
+      <input type="submit" class="btn" value="Submit" />
+    </form>
+    <br>
+    Result: <%=result%>
+  </body>
+</html>

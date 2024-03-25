@@ -42,6 +42,8 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
+    passwordChangedAt: req.body.passwordChangedAt,
+    role: req.body.role
   });
 
   createSendToken(newUser, 201, res);
@@ -56,9 +58,9 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   // 2) Check if user exists & password is correct
   const user = await User.findOne({ email }).select("+password");
-  const correct = await user.correctPassword(password, user.password);
+ 
 
-  if (!user || !correct) {
+  if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("Incorrect Email or password", 401));
   }
 
@@ -68,6 +70,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check if it's there
+  let token;
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -83,7 +86,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
+  
 
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
@@ -126,7 +129,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     return next(new AppError("There is no user with email address.", 404));
   }
 
-  // 2) Generate the random token
+  // 2) Generate the random reset token
   const resetToken = user.createPasswordResetToken();
 
   await user.save({ validateBeforeSave: false });
