@@ -49,7 +49,7 @@ const Garage = [
                 Name: "Mercedes-Benz Cabriolet",
                 Price: {
                   1: "₹1,30,00,000",
-                  2: "₹1,40,00,000",
+                  2: "₹25,40,00,000",
                   3: "₹1,50,00,000",
                 },
               },
@@ -59,8 +59,8 @@ const Garage = [
                 Name: "Mercedes-Benz EQC",
                 Price: {
                   1: "₹1,07,00,000",
-                  2: "₹1,77,00,000",
-                  1: "₹1,90,00,000",
+                  2: "₹22,77,00,000",
+                  3: "₹1,90,00,000",
                 },
               },
             },
@@ -113,13 +113,21 @@ const Garage = [
             {
               3: {
                 Name: "Kawasaki Ninja ZX-10R",
-                Price: { 1: "₹1,95,99,000", 2: "₹16,99,000", 3: "₹17,99,000" },
+                Price: {
+                  1: "₹1,95,99,000",
+                  2: "₹2,16,99,000",
+                  3: "₹17,99,000",
+                },
               },
             },
             {
               3: {
                 Name: "Kawasaki Ninja H2",
-                Price: { 3: "₹24,79,90,000", 2: "₹79,95,000", 1: "₹79,99,000" },
+                Price: {
+                  3: "₹24,79,90,000",
+                  2: "₹99,79,95,000",
+                  1: "₹79,99,000",
+                },
               },
             },
             {
@@ -186,33 +194,58 @@ const convertToNumber = (currencyString) =>
   parseInt(currencyString.replace(/[^0-9]/g, ""), 10);
 
 ///////////////////////////////////////////////
-const companyName = "Lamborghini";
+// const companyName = "Porsche";
 const bikeName = "Kawasaki";
+const carName = "Mercedes";
 let highestPrice = 0;
 
 var BikesWithPrice = [];
+var CarsWithPrice = [];
 Garage.forEach((item) => {
   const key = Object.keys(item);
-  if (key == "Cars") {return}
-  if (key == "Bikes") {
-    if (item.Bikes) {
-      if (item.Bikes.sports_bikes) {
-        item.Bikes.sports_bikes.forEach((bike) => {
-          if (bike.Company == `${bikeName}`) {
+  // if (key == "Cars") {
+  //   if(item.Cars){
+  //     if(item.Cars.sports_cars){
+  //       item.Cars.sports_cars.forEach(cars) => {
+  //         const carModels = cars.Models;
+
+  //         carModels.forEach((carByKey, idx) => {
+  //           CarsWithPrice.push(...Object.values(carByKey))
+  //         });
+
+  //         CarsWithPrice.forEach(carname) => {
+  //           Object.values(carname.Price).forEach((currStr) => {
+  //             const num = convertToNumber(currStr);
+  //             if(num > highestPrice){
+  //               highestPrice = num;
+  //             }
+  //           })
+  //           const highStr = `₹${highestPrice.toLocaleString("en-IN")}`;
+  //         }
+  //       }
+  //     }
+  //   }
+
+  // }
+  if (key == "Cars") {
+    if (item.Cars) {
+      if (item.Cars.sports_cars) {
+        item.Cars.sports_cars.forEach((car) => {
+          if (car.Company == `${carName}`) {
             // console.log(`${bikeName}`);
-            const bikeModels = bike.Models;
+            const carModels = car.Models;
             // console.log(bikeModels);
 
-            bikeModels.forEach((bikeByKey, idx) => {
+            carModels.forEach((carByKey, idx) => {
               // console.log(...Object.values(bikeByKey))
-              BikesWithPrice.push(...Object.values(bikeByKey));
+              CarsWithPrice.push(...Object.values(carByKey));
               // BikesWithPrice.push(bikeByKey[idx + 1]);
             });
 
             // console.log(BikesWithPrice);
 
-            BikesWithPrice.forEach((bikename) => {
-              Object.values(bikename.Price)
+            CarsWithPrice.forEach((carname) => {
+              Object.values(carname.Price)
                 //   console.log(Object.values(bikename.Price))
                 .forEach((currStr) => {
                   // console.log(currStr)
@@ -226,27 +259,25 @@ Garage.forEach((item) => {
             const highStr = `₹${highestPrice.toLocaleString("en-IN")}`;
             // console.log(highStr);
 
-            BikesWithPrice.forEach((bikePrice) => {
-                let values = Object.values(bikePrice.Price)
-                // console.log(values);
-                if(values.includes(highStr))
-                {
-                    // console.log(`Highest price found`)
-                    const ans = {}
-                    ans.Model_name = `${bikePrice.Name}`
-                    ans.Price = `${highStr}`
-                console.log(ans)
+            CarsWithPrice.forEach((carPrice) => {
+              let values = Object.values(carPrice.Price);
+              // console.log(values);
+              if (values.includes(highStr)) {
+                // console.log(`Highest price found`)
+                const ans = {};
+                ans.Model_name = `${carPrice.Name}`;
+                ans.Price = `${highStr}`;
+                console.log(ans);
+              }
+              // console.log(bikePrice.Name)
 
-                }
-                // console.log(bikePrice.Name)
-               
-                // console.log(`Model_name: ${bikePrice.Name}, Price: ${highestPrice}`)
+              // console.log(`Model_name: ${bikePrice.Name}, Price: ${highestPrice}`)
             });
           }
         });
       }
     }
   } else {
-    console.log("We can't find anything");
+    // console.log("We can't find anything");
   }
 });
