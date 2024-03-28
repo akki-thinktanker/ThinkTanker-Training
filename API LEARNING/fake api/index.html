@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake api testing</title>
+</head>
+<body>
+    <form action="#" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name"> <br>
+        <label for="age">Age: </label>
+        <input type="number" name="age" id="age"><br>
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="email"><br>
+
+        <button id="btn">Submit</button>
+    </form>
+
+    <script>
+         const name = document.getElementById('name')
+         const age = document.getElementById('age')
+         const email = document.getElementById('email')
+        const btn = document.getElementById('btn')
+
+        const myFetchPostRequest = async (nameVal, ageVal, emailVal) => {
+  const response = await fetch('http://127.0.0.1:8080/users', {
+    method: 'POST',
+    body: JSON.stringify({
+      name: nameVal,
+      age: ageVal,
+      email: emailVal,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  const resJson = await response.json();
+  return resJson;
+};
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+      
+        nameVal = name.value;
+        ageVal = age.value;
+        emailVal = email.value;
+
+
+        myFetchPostRequest(nameVal, ageVal, emailVal)
+     
+
+        
+        console.log(nameVal,ageVal,emailVal)
+            
+        })
+
+    </script>
+</body>
+</html>
